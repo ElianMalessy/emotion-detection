@@ -1,0 +1,312 @@
+2025-03-13 18:57:33,828 - Fold 1/5
+2025-03-13 18:57:48,555 -   Epoch 1/20
+2025-03-13 18:57:48,555 -     Training Loss: 18.2325, Training Accuracy: 0.5431
+2025-03-13 18:57:48,555 -     Validation Loss: 0.7487, Validation Accuracy: 0.7133
+2025-03-13 18:58:03,906 -   Epoch 2/20
+2025-03-13 18:58:03,906 -     Training Loss: 0.7671, Training Accuracy: 0.7224
+2025-03-13 18:58:03,906 -     Validation Loss: 0.6262, Validation Accuracy: 0.7699
+2025-03-13 18:58:20,026 -   Epoch 3/20
+2025-03-13 18:58:20,026 -     Training Loss: 0.5759, Training Accuracy: 0.7899
+2025-03-13 18:58:20,026 -     Validation Loss: 0.7004, Validation Accuracy: 0.7429
+2025-03-13 18:58:35,846 -   Epoch 4/20
+2025-03-13 18:58:35,847 -     Training Loss: 0.4779, Training Accuracy: 0.8224
+2025-03-13 18:58:35,847 -     Validation Loss: 0.6796, Validation Accuracy: 0.7801
+2025-03-13 18:58:52,688 -   Epoch 5/20
+2025-03-13 18:58:52,688 -     Training Loss: 0.4221, Training Accuracy: 0.8361
+2025-03-13 18:58:52,688 -     Validation Loss: 0.8057, Validation Accuracy: 0.7622
+2025-03-13 18:59:08,849 -   Epoch 6/20
+2025-03-13 18:59:08,850 -     Training Loss: 0.3032, Training Accuracy: 0.8861
+2025-03-13 18:59:08,850 -     Validation Loss: 0.8768, Validation Accuracy: 0.7666
+2025-03-13 18:59:26,026 -   Epoch 7/20
+2025-03-13 18:59:26,026 -     Training Loss: 0.2741, Training Accuracy: 0.8934
+2025-03-13 18:59:26,026 -     Validation Loss: 0.9569, Validation Accuracy: 0.7706
+2025-03-13 18:59:43,075 -   Epoch 8/20
+2025-03-13 18:59:43,076 -     Training Loss: 0.2062, Training Accuracy: 0.9222
+2025-03-13 18:59:43,076 -     Validation Loss: 1.0997, Validation Accuracy: 0.7659
+2025-03-13 18:59:59,902 -   Epoch 9/20
+2025-03-13 18:59:59,902 -     Training Loss: 0.1664, Training Accuracy: 0.9375
+2025-03-13 18:59:59,902 -     Validation Loss: 1.1903, Validation Accuracy: 0.7893
+2025-03-13 19:00:16,734 -   Epoch 10/20
+2025-03-13 19:00:16,734 -     Training Loss: 0.1441, Training Accuracy: 0.9461
+2025-03-13 19:00:16,734 -     Validation Loss: 1.1958, Validation Accuracy: 0.7703
+2025-03-13 19:00:33,649 -   Epoch 11/20
+2025-03-13 19:00:33,650 -     Training Loss: 0.1366, Training Accuracy: 0.9502
+2025-03-13 19:00:33,650 -     Validation Loss: 1.3995, Validation Accuracy: 0.7783
+2025-03-13 19:00:51,552 -   Epoch 12/20
+2025-03-13 19:00:51,552 -     Training Loss: 0.2253, Training Accuracy: 0.9178
+2025-03-13 19:00:51,552 -     Validation Loss: 1.4113, Validation Accuracy: 0.7367
+2025-03-13 19:01:08,613 -   Epoch 13/20
+2025-03-13 19:01:08,613 -     Training Loss: 0.1519, Training Accuracy: 0.9435
+2025-03-13 19:01:08,613 -     Validation Loss: 1.5456, Validation Accuracy: 0.7126
+2025-03-13 19:01:26,039 -   Epoch 14/20
+2025-03-13 19:01:26,039 -     Training Loss: 0.1228, Training Accuracy: 0.9564
+2025-03-13 19:01:26,039 -     Validation Loss: 1.7288, Validation Accuracy: 0.7783
+2025-03-13 19:01:43,544 -   Epoch 15/20
+2025-03-13 19:01:43,544 -     Training Loss: 0.0939, Training Accuracy: 0.9690
+2025-03-13 19:01:43,544 -     Validation Loss: 1.7803, Validation Accuracy: 0.7692
+2025-03-13 19:02:02,019 -   Epoch 16/20
+2025-03-13 19:02:02,019 -     Training Loss: 0.0978, Training Accuracy: 0.9660
+2025-03-13 19:02:02,019 -     Validation Loss: 1.7298, Validation Accuracy: 0.7549
+2025-03-13 19:02:19,082 -   Epoch 17/20
+2025-03-13 19:02:19,083 -     Training Loss: 0.0801, Training Accuracy: 0.9742
+2025-03-13 19:02:19,083 -     Validation Loss: 1.9366, Validation Accuracy: 0.7597
+2025-03-13 19:02:37,083 -   Epoch 18/20
+2025-03-13 19:02:37,083 -     Training Loss: 0.1760, Training Accuracy: 0.9418
+2025-03-13 19:02:37,083 -     Validation Loss: 1.8495, Validation Accuracy: 0.7557
+2025-03-13 19:02:54,460 -   Epoch 19/20
+2025-03-13 19:02:54,460 -     Training Loss: 0.0886, Training Accuracy: 0.9702
+2025-03-13 19:02:54,460 -     Validation Loss: 1.9374, Validation Accuracy: 0.7852
+2025-03-13 19:03:14,184 -   Epoch 20/20
+2025-03-13 19:03:14,184 -     Training Loss: 0.0559, Training Accuracy: 0.9824
+2025-03-13 19:03:14,184 -     Validation Loss: 1.9707, Validation Accuracy: 0.7703
+2025-03-13 19:03:14,184 - Fold 2/5
+2025-03-13 19:03:33,966 -   Epoch 1/20
+2025-03-13 19:03:33,966 -     Training Loss: 31.9449, Training Accuracy: 0.4954
+2025-03-13 19:03:33,966 -     Validation Loss: 0.9229, Validation Accuracy: 0.5183
+2025-03-13 19:03:53,061 -   Epoch 2/20
+2025-03-13 19:03:53,061 -     Training Loss: 0.9803, Training Accuracy: 0.5562
+2025-03-13 19:03:53,062 -     Validation Loss: 0.8913, Validation Accuracy: 0.5720
+2025-03-13 19:04:11,708 -   Epoch 3/20
+2025-03-13 19:04:11,708 -     Training Loss: 0.9028, Training Accuracy: 0.5951
+2025-03-13 19:04:11,708 -     Validation Loss: 0.8690, Validation Accuracy: 0.6088
+2025-03-13 19:04:28,762 -   Epoch 4/20
+2025-03-13 19:04:28,762 -     Training Loss: 0.7955, Training Accuracy: 0.6615
+2025-03-13 19:04:28,762 -     Validation Loss: 0.8201, Validation Accuracy: 0.6534
+2025-03-13 19:04:46,694 -   Epoch 5/20
+2025-03-13 19:04:46,695 -     Training Loss: 0.6737, Training Accuracy: 0.7246
+2025-03-13 19:04:46,695 -     Validation Loss: 0.7697, Validation Accuracy: 0.7056
+2025-03-13 19:05:05,072 -   Epoch 6/20
+2025-03-13 19:05:05,072 -     Training Loss: 0.5494, Training Accuracy: 0.7848
+2025-03-13 19:05:05,072 -     Validation Loss: 0.8668, Validation Accuracy: 0.6885
+2025-03-13 19:05:22,117 -   Epoch 7/20
+2025-03-13 19:05:22,118 -     Training Loss: 0.4359, Training Accuracy: 0.8341
+2025-03-13 19:05:22,118 -     Validation Loss: 0.8517, Validation Accuracy: 0.7279
+2025-03-13 19:05:40,754 -   Epoch 8/20
+2025-03-13 19:05:40,754 -     Training Loss: 0.3329, Training Accuracy: 0.8747
+2025-03-13 19:05:40,754 -     Validation Loss: 1.0434, Validation Accuracy: 0.7213
+2025-03-13 19:05:59,768 -   Epoch 9/20
+2025-03-13 19:05:59,768 -     Training Loss: 0.2588, Training Accuracy: 0.9061
+2025-03-13 19:05:59,768 -     Validation Loss: 1.1355, Validation Accuracy: 0.7224
+2025-03-13 19:06:18,472 -   Epoch 10/20
+2025-03-13 19:06:18,472 -     Training Loss: 0.2061, Training Accuracy: 0.9280
+2025-03-13 19:06:18,473 -     Validation Loss: 1.3511, Validation Accuracy: 0.7436
+2025-03-13 19:06:37,310 -   Epoch 11/20
+2025-03-13 19:06:37,310 -     Training Loss: 0.1445, Training Accuracy: 0.9496
+2025-03-13 19:06:37,311 -     Validation Loss: 1.4924, Validation Accuracy: 0.7191
+2025-03-13 19:06:58,449 -   Epoch 12/20
+2025-03-13 19:06:58,449 -     Training Loss: 0.1000, Training Accuracy: 0.9701
+2025-03-13 19:06:58,449 -     Validation Loss: 1.6614, Validation Accuracy: 0.7184
+2025-03-13 19:07:20,976 -   Epoch 13/20
+2025-03-13 19:07:20,976 -     Training Loss: 0.0722, Training Accuracy: 0.9780
+2025-03-13 19:07:20,976 -     Validation Loss: 1.9776, Validation Accuracy: 0.7334
+2025-03-13 19:07:42,010 -   Epoch 14/20
+2025-03-13 19:07:42,010 -     Training Loss: 0.0628, Training Accuracy: 0.9819
+2025-03-13 19:07:42,010 -     Validation Loss: 1.8233, Validation Accuracy: 0.7129
+2025-03-13 19:08:01,842 -   Epoch 15/20
+2025-03-13 19:08:01,842 -     Training Loss: 0.1012, Training Accuracy: 0.9710
+2025-03-13 19:08:01,842 -     Validation Loss: 1.9956, Validation Accuracy: 0.7023
+2025-03-13 19:08:22,944 -   Epoch 16/20
+2025-03-13 19:08:22,944 -     Training Loss: 0.1041, Training Accuracy: 0.9679
+2025-03-13 19:08:22,944 -     Validation Loss: 2.0537, Validation Accuracy: 0.6998
+2025-03-13 19:08:43,157 -   Epoch 17/20
+2025-03-13 19:08:43,157 -     Training Loss: 0.0595, Training Accuracy: 0.9817
+2025-03-13 19:08:43,157 -     Validation Loss: 2.1211, Validation Accuracy: 0.7184
+2025-03-13 19:09:02,782 -   Epoch 18/20
+2025-03-13 19:09:02,783 -     Training Loss: 0.0517, Training Accuracy: 0.9869
+2025-03-13 19:09:02,783 -     Validation Loss: 2.1234, Validation Accuracy: 0.7075
+2025-03-13 19:09:21,309 -   Epoch 19/20
+2025-03-13 19:09:21,309 -     Training Loss: 0.0757, Training Accuracy: 0.9753
+2025-03-13 19:09:21,310 -     Validation Loss: 2.5282, Validation Accuracy: 0.7257
+2025-03-13 19:09:39,598 -   Epoch 20/20
+2025-03-13 19:09:39,598 -     Training Loss: 0.0366, Training Accuracy: 0.9899
+2025-03-13 19:09:39,598 -     Validation Loss: 2.6915, Validation Accuracy: 0.7104
+2025-03-13 19:09:39,598 - Fold 3/5
+2025-03-13 19:09:59,204 -   Epoch 1/20
+2025-03-13 19:09:59,204 -     Training Loss: 22.8427, Training Accuracy: 0.4932
+2025-03-13 19:09:59,204 -     Validation Loss: 0.9554, Validation Accuracy: 0.5636
+2025-03-13 19:10:17,842 -   Epoch 2/20
+2025-03-13 19:10:17,842 -     Training Loss: 0.8929, Training Accuracy: 0.6098
+2025-03-13 19:10:17,842 -     Validation Loss: 0.9854, Validation Accuracy: 0.5541
+2025-03-13 19:10:36,357 -   Epoch 3/20
+2025-03-13 19:10:36,358 -     Training Loss: 0.8840, Training Accuracy: 0.5960
+2025-03-13 19:10:36,358 -     Validation Loss: 1.0370, Validation Accuracy: 0.5636
+2025-03-13 19:10:55,266 -   Epoch 4/20
+2025-03-13 19:10:55,266 -     Training Loss: 0.6867, Training Accuracy: 0.7244
+2025-03-13 19:10:55,267 -     Validation Loss: 0.8118, Validation Accuracy: 0.7352
+2025-03-13 19:11:14,086 -   Epoch 5/20
+2025-03-13 19:11:14,086 -     Training Loss: 0.4753, Training Accuracy: 0.8244
+2025-03-13 19:11:14,086 -     Validation Loss: 0.8060, Validation Accuracy: 0.7363
+2025-03-13 19:11:33,594 -   Epoch 6/20
+2025-03-13 19:11:33,594 -     Training Loss: 0.3604, Training Accuracy: 0.8711
+2025-03-13 19:11:33,594 -     Validation Loss: 0.8481, Validation Accuracy: 0.7527
+2025-03-13 19:11:55,450 -   Epoch 7/20
+2025-03-13 19:11:55,451 -     Training Loss: 0.2756, Training Accuracy: 0.8985
+2025-03-13 19:11:55,451 -     Validation Loss: 0.9970, Validation Accuracy: 0.7597
+2025-03-13 19:12:17,104 -   Epoch 8/20
+2025-03-13 19:12:17,104 -     Training Loss: 0.2036, Training Accuracy: 0.9254
+2025-03-13 19:12:17,104 -     Validation Loss: 1.5499, Validation Accuracy: 0.6651
+2025-03-13 19:12:36,938 -   Epoch 9/20
+2025-03-13 19:12:36,938 -     Training Loss: 0.1840, Training Accuracy: 0.9329
+2025-03-13 19:12:36,938 -     Validation Loss: 1.3204, Validation Accuracy: 0.7633
+2025-03-13 19:12:57,196 -   Epoch 10/20
+2025-03-13 19:12:57,196 -     Training Loss: 0.1256, Training Accuracy: 0.9544
+2025-03-13 19:12:57,196 -     Validation Loss: 1.5173, Validation Accuracy: 0.7557
+2025-03-13 19:13:17,372 -   Epoch 11/20
+2025-03-13 19:13:17,372 -     Training Loss: 0.0971, Training Accuracy: 0.9673
+2025-03-13 19:13:17,373 -     Validation Loss: 1.5241, Validation Accuracy: 0.7447
+2025-03-13 19:13:37,176 -   Epoch 12/20
+2025-03-13 19:13:37,177 -     Training Loss: 0.0974, Training Accuracy: 0.9669
+2025-03-13 19:13:37,177 -     Validation Loss: 1.8359, Validation Accuracy: 0.7589
+2025-03-13 19:13:56,433 -   Epoch 13/20
+2025-03-13 19:13:56,433 -     Training Loss: 0.0810, Training Accuracy: 0.9726
+2025-03-13 19:13:56,433 -     Validation Loss: 1.9027, Validation Accuracy: 0.7345
+2025-03-13 19:14:15,615 -   Epoch 14/20
+2025-03-13 19:14:15,615 -     Training Loss: 0.0957, Training Accuracy: 0.9685
+2025-03-13 19:14:15,615 -     Validation Loss: 2.0939, Validation Accuracy: 0.7202
+2025-03-13 19:14:36,050 -   Epoch 15/20
+2025-03-13 19:14:36,050 -     Training Loss: 0.0847, Training Accuracy: 0.9706
+2025-03-13 19:14:36,050 -     Validation Loss: 1.9745, Validation Accuracy: 0.7319
+2025-03-13 19:14:55,291 -   Epoch 16/20
+2025-03-13 19:14:55,291 -     Training Loss: 0.0674, Training Accuracy: 0.9770
+2025-03-13 19:14:55,291 -     Validation Loss: 2.1694, Validation Accuracy: 0.7429
+2025-03-13 19:15:15,705 -   Epoch 17/20
+2025-03-13 19:15:15,705 -     Training Loss: 0.0580, Training Accuracy: 0.9821
+2025-03-13 19:15:15,706 -     Validation Loss: 2.1979, Validation Accuracy: 0.7389
+2025-03-13 19:15:38,179 -   Epoch 18/20
+2025-03-13 19:15:38,179 -     Training Loss: 0.0680, Training Accuracy: 0.9783
+2025-03-13 19:15:38,179 -     Validation Loss: 2.2936, Validation Accuracy: 0.7432
+2025-03-13 19:15:57,990 -   Epoch 19/20
+2025-03-13 19:15:57,990 -     Training Loss: 0.0397, Training Accuracy: 0.9868
+2025-03-13 19:15:57,990 -     Validation Loss: 2.4897, Validation Accuracy: 0.7421
+2025-03-13 19:16:18,242 -   Epoch 20/20
+2025-03-13 19:16:18,242 -     Training Loss: 0.0262, Training Accuracy: 0.9931
+2025-03-13 19:16:18,242 -     Validation Loss: 2.6260, Validation Accuracy: 0.7462
+2025-03-13 19:16:18,242 - Fold 4/5
+2025-03-13 19:16:39,106 -   Epoch 1/20
+2025-03-13 19:16:39,107 -     Training Loss: 23.4162, Training Accuracy: 0.4904
+2025-03-13 19:16:39,107 -     Validation Loss: 0.9944, Validation Accuracy: 0.5106
+2025-03-13 19:16:58,208 -   Epoch 2/20
+2025-03-13 19:16:58,208 -     Training Loss: 0.9594, Training Accuracy: 0.5646
+2025-03-13 19:16:58,208 -     Validation Loss: 0.9657, Validation Accuracy: 0.5515
+2025-03-13 19:17:19,981 -   Epoch 3/20
+2025-03-13 19:17:19,982 -     Training Loss: 0.8636, Training Accuracy: 0.6215
+2025-03-13 19:17:19,982 -     Validation Loss: 0.9869, Validation Accuracy: 0.5924
+2025-03-13 19:17:44,373 -   Epoch 4/20
+2025-03-13 19:17:44,373 -     Training Loss: 0.7686, Training Accuracy: 0.6687
+2025-03-13 19:17:44,373 -     Validation Loss: 0.9920, Validation Accuracy: 0.5811
+2025-03-13 19:18:08,976 -   Epoch 5/20
+2025-03-13 19:18:08,976 -     Training Loss: 0.6726, Training Accuracy: 0.7200
+2025-03-13 19:18:08,976 -     Validation Loss: 0.9878, Validation Accuracy: 0.6337
+2025-03-13 19:18:33,540 -   Epoch 6/20
+2025-03-13 19:18:33,540 -     Training Loss: 0.5808, Training Accuracy: 0.7602
+2025-03-13 19:18:33,540 -     Validation Loss: 1.0038, Validation Accuracy: 0.6439
+2025-03-13 19:18:56,544 -   Epoch 7/20
+2025-03-13 19:18:56,544 -     Training Loss: 0.4897, Training Accuracy: 0.8055
+2025-03-13 19:18:56,544 -     Validation Loss: 1.0759, Validation Accuracy: 0.6538
+2025-03-13 19:19:19,925 -   Epoch 8/20
+2025-03-13 19:19:19,925 -     Training Loss: 0.4102, Training Accuracy: 0.8381
+2025-03-13 19:19:19,925 -     Validation Loss: 1.1558, Validation Accuracy: 0.6563
+2025-03-13 19:19:44,867 -   Epoch 9/20
+2025-03-13 19:19:44,867 -     Training Loss: 0.3450, Training Accuracy: 0.8679
+2025-03-13 19:19:44,867 -     Validation Loss: 1.1847, Validation Accuracy: 0.6877
+2025-03-13 19:20:08,642 -   Epoch 10/20
+2025-03-13 19:20:08,642 -     Training Loss: 0.2857, Training Accuracy: 0.8898
+2025-03-13 19:20:08,642 -     Validation Loss: 1.1905, Validation Accuracy: 0.7118
+2025-03-13 19:20:30,606 -   Epoch 11/20
+2025-03-13 19:20:30,606 -     Training Loss: 0.2356, Training Accuracy: 0.9081
+2025-03-13 19:20:30,606 -     Validation Loss: 1.5079, Validation Accuracy: 0.6728
+2025-03-13 19:20:53,285 -   Epoch 12/20
+2025-03-13 19:20:53,286 -     Training Loss: 0.1776, Training Accuracy: 0.9354
+2025-03-13 19:20:53,286 -     Validation Loss: 1.4632, Validation Accuracy: 0.6950
+2025-03-13 19:21:15,162 -   Epoch 13/20
+2025-03-13 19:21:15,162 -     Training Loss: 0.1340, Training Accuracy: 0.9538
+2025-03-13 19:21:15,162 -     Validation Loss: 1.6741, Validation Accuracy: 0.7060
+2025-03-13 19:21:37,052 -   Epoch 14/20
+2025-03-13 19:21:37,053 -     Training Loss: 0.1161, Training Accuracy: 0.9637
+2025-03-13 19:21:37,053 -     Validation Loss: 1.6980, Validation Accuracy: 0.7177
+2025-03-13 19:22:00,375 -   Epoch 15/20
+2025-03-13 19:22:00,376 -     Training Loss: 0.0972, Training Accuracy: 0.9684
+2025-03-13 19:22:00,376 -     Validation Loss: 1.9280, Validation Accuracy: 0.7334
+2025-03-13 19:22:23,397 -   Epoch 16/20
+2025-03-13 19:22:23,397 -     Training Loss: 0.0946, Training Accuracy: 0.9713
+2025-03-13 19:22:23,397 -     Validation Loss: 1.8598, Validation Accuracy: 0.7049
+2025-03-13 19:22:48,875 -   Epoch 17/20
+2025-03-13 19:22:48,875 -     Training Loss: 0.0942, Training Accuracy: 0.9678
+2025-03-13 19:22:48,875 -     Validation Loss: 2.0374, Validation Accuracy: 0.7173
+2025-03-13 19:23:11,208 -   Epoch 18/20
+2025-03-13 19:23:11,209 -     Training Loss: 0.0887, Training Accuracy: 0.9713
+2025-03-13 19:23:11,209 -     Validation Loss: 2.0104, Validation Accuracy: 0.7268
+2025-03-13 19:23:34,011 -   Epoch 19/20
+2025-03-13 19:23:34,011 -     Training Loss: 0.0570, Training Accuracy: 0.9823
+2025-03-13 19:23:34,011 -     Validation Loss: 2.2585, Validation Accuracy: 0.7140
+2025-03-13 19:23:56,366 -   Epoch 20/20
+2025-03-13 19:23:56,366 -     Training Loss: 0.0408, Training Accuracy: 0.9880
+2025-03-13 19:23:56,366 -     Validation Loss: 2.5215, Validation Accuracy: 0.7038
+2025-03-13 19:23:56,366 - Fold 5/5
+2025-03-13 19:24:18,616 -   Epoch 1/20
+2025-03-13 19:24:18,616 -     Training Loss: 44.7698, Training Accuracy: 0.5299
+2025-03-13 19:24:18,617 -     Validation Loss: 1.4630, Validation Accuracy: 0.4587
+2025-03-13 19:24:40,009 -   Epoch 2/20
+2025-03-13 19:24:40,009 -     Training Loss: 0.8210, Training Accuracy: 0.6566
+2025-03-13 19:24:40,009 -     Validation Loss: 1.5217, Validation Accuracy: 0.5314
+2025-03-13 19:25:00,444 -   Epoch 3/20
+2025-03-13 19:25:00,444 -     Training Loss: 0.6761, Training Accuracy: 0.7359
+2025-03-13 19:25:00,444 -     Validation Loss: 1.5717, Validation Accuracy: 0.5690
+2025-03-13 19:25:20,768 -   Epoch 4/20
+2025-03-13 19:25:20,768 -     Training Loss: 0.5542, Training Accuracy: 0.7818
+2025-03-13 19:25:20,768 -     Validation Loss: 1.9303, Validation Accuracy: 0.5741
+2025-03-13 19:25:41,866 -   Epoch 5/20
+2025-03-13 19:25:41,866 -     Training Loss: 0.4447, Training Accuracy: 0.8299
+2025-03-13 19:25:41,866 -     Validation Loss: 2.2027, Validation Accuracy: 0.5701
+2025-03-13 19:26:02,285 -   Epoch 6/20
+2025-03-13 19:26:02,285 -     Training Loss: 0.3459, Training Accuracy: 0.8667
+2025-03-13 19:26:02,285 -     Validation Loss: 2.4633, Validation Accuracy: 0.5814
+2025-03-13 19:26:23,279 -   Epoch 7/20
+2025-03-13 19:26:23,280 -     Training Loss: 0.2636, Training Accuracy: 0.8997
+2025-03-13 19:26:23,280 -     Validation Loss: 2.7589, Validation Accuracy: 0.5774
+2025-03-13 19:26:44,218 -   Epoch 8/20
+2025-03-13 19:26:44,218 -     Training Loss: 0.2072, Training Accuracy: 0.9235
+2025-03-13 19:26:44,218 -     Validation Loss: 3.3906, Validation Accuracy: 0.5873
+2025-03-13 19:27:03,277 -   Epoch 9/20
+2025-03-13 19:27:03,277 -     Training Loss: 0.1674, Training Accuracy: 0.9409
+2025-03-13 19:27:03,277 -     Validation Loss: 3.2108, Validation Accuracy: 0.5570
+2025-03-13 19:27:22,638 -   Epoch 10/20
+2025-03-13 19:27:22,638 -     Training Loss: 0.1579, Training Accuracy: 0.9454
+2025-03-13 19:27:22,638 -     Validation Loss: 3.8497, Validation Accuracy: 0.5672
+2025-03-13 19:27:43,571 -   Epoch 11/20
+2025-03-13 19:27:43,572 -     Training Loss: 0.1477, Training Accuracy: 0.9501
+2025-03-13 19:27:43,572 -     Validation Loss: 3.8747, Validation Accuracy: 0.5570
+2025-03-13 19:28:03,673 -   Epoch 12/20
+2025-03-13 19:28:03,673 -     Training Loss: 0.0902, Training Accuracy: 0.9716
+2025-03-13 19:28:03,674 -     Validation Loss: 4.5121, Validation Accuracy: 0.5617
+2025-03-13 19:28:23,973 -   Epoch 13/20
+2025-03-13 19:28:23,973 -     Training Loss: 0.0762, Training Accuracy: 0.9759
+2025-03-13 19:28:23,973 -     Validation Loss: 4.8102, Validation Accuracy: 0.5760
+2025-03-13 19:28:43,920 -   Epoch 14/20
+2025-03-13 19:28:43,920 -     Training Loss: 0.0952, Training Accuracy: 0.9700
+2025-03-13 19:28:43,920 -     Validation Loss: 4.9869, Validation Accuracy: 0.5687
+2025-03-13 19:29:03,916 -   Epoch 15/20
+2025-03-13 19:29:03,916 -     Training Loss: 0.0563, Training Accuracy: 0.9793
+2025-03-13 19:29:03,916 -     Validation Loss: 5.4167, Validation Accuracy: 0.5694
+2025-03-13 19:29:24,175 -   Epoch 16/20
+2025-03-13 19:29:24,175 -     Training Loss: 0.0513, Training Accuracy: 0.9840
+2025-03-13 19:29:24,175 -     Validation Loss: 6.0592, Validation Accuracy: 0.5646
+2025-03-13 19:29:43,939 -   Epoch 17/20
+2025-03-13 19:29:43,939 -     Training Loss: 0.0606, Training Accuracy: 0.9818
+2025-03-13 19:29:43,939 -     Validation Loss: 6.8624, Validation Accuracy: 0.5489
+2025-03-13 19:30:03,587 -   Epoch 18/20
+2025-03-13 19:30:03,587 -     Training Loss: 0.1171, Training Accuracy: 0.9639
+2025-03-13 19:30:03,587 -     Validation Loss: 6.3971, Validation Accuracy: 0.5657
+2025-03-13 19:30:24,595 -   Epoch 19/20
+2025-03-13 19:30:24,595 -     Training Loss: 0.1399, Training Accuracy: 0.9581
+2025-03-13 19:30:24,595 -     Validation Loss: 5.7931, Validation Accuracy: 0.5453
+2025-03-13 19:30:45,144 -   Epoch 20/20
+2025-03-13 19:30:45,144 -     Training Loss: 0.0858, Training Accuracy: 0.9745
+2025-03-13 19:30:45,144 -     Validation Loss: 6.7359, Validation Accuracy: 0.5723
+2025-03-13 19:30:45,144 - Cross-validation results:
+2025-03-13 19:30:45,144 - Fold 1: Validation Loss: 1.9707, Validation Accuracy: 0.7703
+2025-03-13 19:30:45,144 - Fold 2: Validation Loss: 2.6915, Validation Accuracy: 0.7104
+2025-03-13 19:30:45,144 - Fold 3: Validation Loss: 2.6260, Validation Accuracy: 0.7462
+2025-03-13 19:30:45,144 - Fold 4: Validation Loss: 2.5215, Validation Accuracy: 0.7038
+2025-03-13 19:30:45,144 - Fold 5: Validation Loss: 6.7359, Validation Accuracy: 0.5723
+2025-03-13 19:30:45,147 - Average Validation Loss: 3.3091, Average Validation Accuracy: 0.7006
