@@ -3,11 +3,9 @@ import torch.nn as nn
 from torch.utils.data import Dataset 
 import torch.nn.functional as F
 from torchvision.io import read_image
-from torchvision.transforms import Compose, Resize, ToTensor, Normalize, Grayscale
-from PIL import Image
+from torchvision.transforms import Compose, Resize, Normalize, Grayscale, RandomHorizontalFlip, RandomRotation, RandomResizedCrop
 
 import os
-import polars as pl
 
 class CNN(nn.Module):
     def __init__(self):
@@ -20,6 +18,20 @@ class CNN(nn.Module):
         self.fc1 = nn.Linear(32 * 32 * 32, 128)
         self.fc2 = nn.Linear(128, 8)
 
+    #     self.apply(self.init_weights)
+    #
+    # def init_weights(self, m):
+    #     if isinstance(m, nn.Conv2d):
+    #         # Xavier/Glorot initialization for Conv layers
+    #         nn.init.xavier_normal_(m.weight)
+    #         if m.bias is not None:
+    #             nn.init.zeros_(m.bias)
+    #     elif isinstance(m, nn.Linear):
+    #         # Kaiming/He initialization for Linear layers
+    #         nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+    #         if m.bias is not None:
+    #             nn.init.zeros_(m.bias)
+
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))  # Shape: [64, 16, 175, 175]
         x = self.pool(F.relu(self.conv2(x)))  # Shape: [64, 32, 87, 87]
@@ -29,30 +41,39 @@ class CNN(nn.Module):
         return x
 
 class EmotionsDataset(Dataset):
-    def __init__(self, annotations_file, img_dir, device="cuda"):
-        self.img_labels = pl.read_csv(annotations_file).drop("user.id")
-        self.img_labels.sort("image")
-        self.img_dir = img_dir
-        self.device = device
+    def __init__(self, img_labels, emotion_to_idx, img_dir, device="cuda", train=True):
+        self.img_labels = img_labels
+        self.emotion_to_idx = emotion_to_idx
 
-        self.img_labels = self.img_labels.with_columns(
-            self.img_labels[:, 1].str.to_lowercase().alias("emotion")
-        )
-        self.emotions = self.img_labels[:, 1].unique().to_list()
-        self.emotion_to_idx = {emotion: idx for idx, emotion in enumerate(self.emotions)}
-
-        self.transform = Compose([
+        base_transform = [
             Grayscale(num_output_channels=1), # Most images are already grayscale
             Resize((128, 128)),  # Most images are 350x350, but it takes very long to train
             Normalize(mean=[0.4736], std=[0.2079]), # mean and std of the dataset
-        ])
+        ]
+
+        augmentation_transforms = [
+            RandomHorizontalFlip(p=0.5),  # Flip images with 50% probability
+            RandomRotation(degrees=10),  # Rotate images by ±10 degrees
+            RandomResizedCrop(128, scale=(0.8, 1.0)),  # Random crop and resize
+            Grayscale(num_output_channels=1), # Most images are already grayscale
+            Normalize(mean=[0.4736], std=[0.2079]), # mean and std of the dataset
+        ]
+
+        if train:
+            self.transform = Compose(augmentation_transforms)
+            # self.transform = Compose(base_transform)
+        else:
+            self.transform = Compose(base_transform)
+
+        self.img_dir = img_dir
+        self.device = device
+
 
     def __len__(self):
         return len(self.img_labels)
 
     def __getitem__(self, idx):
         img_path = os.path.join(self.img_dir, self.img_labels[idx, 0])
-        # image = Image.open(img_path)
         image = read_image(img_path).float()
 
         label = self.img_labels[idx, 1]
@@ -60,6 +81,5 @@ class EmotionsDataset(Dataset):
         label = torch.tensor(label)
 
         image = self.transform(image)
-
 
         return image, label
