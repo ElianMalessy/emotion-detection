@@ -40,6 +40,9 @@ def cross_validate(data, k=5, num_epochs=20):
         train_loss = 0
         train_accuracy = 0
 
+        val_loss = 0
+        val_accuracy = 0
+
         for epoch in range(num_epochs):
             print(f"  Epoch {epoch + 1}/{num_epochs}")
             model.train()
@@ -60,7 +63,6 @@ def cross_validate(data, k=5, num_epochs=20):
                 _, predicted = torch.max(outputs, 1)
                 train_accuracy += (predicted == labels).sum().item()
 
-            print(train_loss, len(train_loader))
             train_loss /= len(train_loader)
             train_accuracy /= len(train_subset)
             train_results.append((train_loss, train_accuracy))
@@ -83,13 +85,14 @@ def cross_validate(data, k=5, num_epochs=20):
 
             val_loss /= len(val_loader)
             val_accuracy /= len(val_subset)
-            val_results.append((val_loss, val_accuracy))
 
             print(f"Epoch {epoch + 1}: Training Loss: {train_loss:.4f}, Training Accuracy: {train_accuracy:.4f}")
             print(f"Epoch {epoch + 1}: Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.4f}")
 
             logging.info(f"Epoch {epoch + 1}: Training Loss: {train_loss:.4f}, Training Accuracy: {train_accuracy:.4f}")
             logging.info(f"Epoch {epoch + 1}: Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.4f}")
+
+        val_results.append((val_loss, val_accuracy))
 
 
     
