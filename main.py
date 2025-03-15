@@ -8,6 +8,8 @@ import logging
 import polars as pl
 from sklearn.model_selection import train_test_split
 
+from cross_validation import cross_validate
+
 # Set up logging to write to a file
 logging.basicConfig(filename='training_log.txt', level=logging.INFO, 
                     format='%(asctime)s - %(message)s')
@@ -87,22 +89,23 @@ if __name__ == "__main__":
     data = data.with_columns(
         data[:, 1].str.to_lowercase().alias("emotion")
     )
-
-    emotions = data[:, 1].unique().to_list()
-    emotion_to_idx = {emotion: idx for idx, emotion in enumerate(emotions)}
-
-    train_indices, test_indices = train_test_split(
-        data.select(pl.arange(0, data.height)).to_series().to_list(),
-        test_size=0.2,
-        random_state=42,
-        stratify=data["emotion"].to_list()  # Ensures equal label distribution
-    )
-    training_data = data[train_indices]
-    validate_data = data[test_indices]
+    cross_validate(data, k=5, num_epochs=100)
 
 
-    train_subset = EmotionsDataset(training_data, emotion_to_idx, "images", train=True)
-    val_subset = EmotionsDataset(validate_data, emotion_to_idx, "images", train=False)
-    test_model(train_subset, val_subset, num_epochs=100)
+    # emotions = data[:, 1].unique().to_list()
+    # emotion_to_idx = {emotion: idx for idx, emotion in enumerate(emotions)}
+    #
+    # train_indices, test_indices = train_test_split(
+    #     data.select(pl.arange(0, data.height)).to_series().to_list(),
+    #     test_size=0.2,
+    #     random_state=42,
+    #     stratify=data["emotion"].to_list()  # Ensures equal label distribution
+    # )
+    # training_data = data[train_indices]
+    # validate_data = data[test_indices]
+    #
+    #
+    # train_subset = EmotionsDataset(training_data, emotion_to_idx, "images", train=True)
+    # val_subset = EmotionsDataset(validate_data, emotion_to_idx, "images", train=False)
+    # test_model(train_subset, val_subset, num_epochs=100)
 
-    # cross_validate(train_subset, val_subset, k=5, num_epochs=100)

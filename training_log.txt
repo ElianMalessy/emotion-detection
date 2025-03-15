@@ -1652,3 +1652,7 @@
 2025-03-14 17:39:15,485 - Epoch 98: Training Accuracy: 0.8440, Validation Accuracy: 0.8313
 2025-03-14 17:39:26,600 - Epoch 99: Training Accuracy: 0.8416, Validation Accuracy: 0.8305
 2025-03-14 17:39:37,735 - Epoch 100: Training Accuracy: 0.8452, Validation Accuracy: 0.8353
+2025-03-15 00:35:20,705 - Fold 1/5
+2025-03-15 00:35:31,149 - Epoch 1: Training Loss: 69.1889, Training Accuracy: 0.3666
+2025-03-15 00:35:31,149 - Epoch 1: Validation Loss: 2.0074, Validation Accuracy: 0.3970
+2025-03-15 00:36:26,826 - Fold 1/5

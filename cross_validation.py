@@ -1,35 +1,41 @@
 import torch
 from torch import nn
-from torch.utils.data import DataLoader, Subset
-from models import CNN
+from torch.utils.data import DataLoader
+from models import CNN, EmotionsDataset
 import numpy as np
 import logging
-from sklearn.model_selection import KFold
+from sklearn.model_selection import StratifiedKFold
 
 
-def cross_validate(dataset, k=5, num_epochs=20):
+def cross_validate(data, k=5, num_epochs=20):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     criterion = nn.CrossEntropyLoss().to(device)
-    # criterion = FocalLoss(alpha=0.25, gamma=2).to(device)
     
+    emotions = data[:, 1].unique().to_list()
+    emotion_to_idx = {emotion: idx for idx, emotion in enumerate(emotions)}   
+
     # Split dataset into k folds
-    kf = KFold(n_splits=k, shuffle=True, random_state=42)
+    kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    indices = np.zeros(len(data))
+    labels = data["emotion"].to_list()
+
     train_results = []
     val_results = []
 
 
-    for fold, (train_indices, val_indices) in enumerate(kf.split(dataset)):
+    for fold, (train_indices, val_indices) in enumerate(kf.split(indices, labels)):
         logging.info(f"Fold {fold + 1}/{k}")
         model = CNN().to(device)
-        # optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-        optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
-        
-        train_subset = Subset(dataset, train_indices)
-        val_subset = Subset(dataset, val_indices)
+        training_data = data[train_indices]
+        validate_data = data[val_indices]
+    
+        train_subset = EmotionsDataset(training_data, emotion_to_idx, "images", train=True)
+        val_subset = EmotionsDataset(validate_data, emotion_to_idx, "images", train=False)       
 
-        train_loader = DataLoader(train_subset, batch_size=128, shuffle=True, num_workers=4, pin_memory=True)
-        val_loader = DataLoader(val_subset, batch_size=128, shuffle=False, num_workers=4, pin_memory=True)
+        train_loader = DataLoader(train_subset, batch_size=64, shuffle=True, num_workers=4, pin_memory=True)
+        val_loader = DataLoader(val_subset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True)
 
         train_loss = 0
         train_accuracy = 0
