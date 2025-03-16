@@ -47,6 +47,7 @@ def test_model(data, num_epochs=30):
     val_loader = DataLoader(val_subset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True)
 
     results = {}
+    best_val_accuracy = 0.0  # Track the best validation accuracy
 
     for epoch in range(num_epochs):
         train_accuracy = 0
@@ -65,7 +66,6 @@ def test_model(data, num_epochs=30):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-
 
             _, predicted = torch.max(outputs, 1)
             train_accuracy += (predicted == labels).sum().item()
@@ -91,11 +91,23 @@ def test_model(data, num_epochs=30):
         print(f"Epoch {epoch + 1}: Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
         logging.info(f"Epoch {epoch + 1}: Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
 
+        # Save the model if it's the best so far
+        if val_accuracy > best_val_accuracy:
+            best_val_accuracy = val_accuracy
+            torch.save(model.state_dict(), "emotion_model.pth")
+            print(f"Saved new best model with validation accuracy: {val_accuracy:.4f}")
+            logging.info(f"Saved new best model with validation accuracy: {val_accuracy:.4f}")
+
+    # Save the final model regardless of performance
+    torch.save(model.state_dict(), "emotion_model_final.pth")
+    print(f"Saved final model with validation accuracy: {val_accuracy:.4f}")
+    logging.info(f"Saved final model with validation accuracy: {val_accuracy:.4f}")
 
     import json
     with open("data.json", "w") as f:
         json.dump(results, f)
 
+    return model, best_val_accuracy
 
 
 if __name__ == "__main__":
@@ -103,7 +115,6 @@ if __name__ == "__main__":
     data = data.with_columns(
         data[:, 1].str.to_lowercase().alias("emotion")
     )
-    test_model(data, num_epochs=30)
+    model, best_accuracy = test_model(data, num_epochs=30)
+    print(f"Training complete! Best validation accuracy: {best_accuracy:.4f}")
     # cross_validate(data, k=5, num_epochs=100)
-
-
