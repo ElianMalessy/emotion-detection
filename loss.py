@@ -16,7 +16,6 @@ class FocalLoss(nn.Module):
         )
 
         self.alpha_dict = emotion_alphas["alpha"]
-        print(self.alpha_dict)
         self.gamma = gamma
         self.reduction = reduction
 

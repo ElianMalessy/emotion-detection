@@ -7,6 +7,7 @@ import logging
 import polars as pl
 from sklearn.model_selection import train_test_split
 from cross_validation import cross_validate
+from loss import FocalLoss
 
 # Set up logging to write to a file
 logging.basicConfig(filename='training_log.txt', level=logging.INFO, 
@@ -21,6 +22,7 @@ if torch.cuda.is_available():
 def test_model(data, num_epochs=30):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     criterion = nn.CrossEntropyLoss().to(device)
+    # criterion = FocalLoss(data, gamma=1).to(device)
 
     model = CNN().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -41,7 +43,7 @@ def test_model(data, num_epochs=30):
     train_subset = EmotionsDataset(training_data, emotion_to_idx, "images", train=True)
     val_subset = EmotionsDataset(validate_data, emotion_to_idx, "images", train=False)
 
-    train_loader = DataLoader(train_subset, batch_size=64, shuffle=True, num_workers=4, pin_memory=True)
+    train_loader = DataLoader(train_subset, batch_size=64, shuffle=True, num_workers=4, pin_memory=True, persistent_workers=True)
     val_loader = DataLoader(val_subset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True)
 
     results = {}
@@ -91,7 +93,7 @@ def test_model(data, num_epochs=30):
 
 
     import json
-    with open("adam.json", "w") as f:
+    with open("data.json", "w") as f:
         json.dump(results, f)
 
 
@@ -101,7 +103,7 @@ if __name__ == "__main__":
     data = data.with_columns(
         data[:, 1].str.to_lowercase().alias("emotion")
     )
+    test_model(data, num_epochs=30)
     # cross_validate(data, k=5, num_epochs=100)
 
-    test_model(data, num_epochs=100)
 
