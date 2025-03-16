@@ -1,27 +1,37 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import polars as pl
 
 class FocalLoss(nn.Module):
-    def __init__(self, alpha=0.25, gamma=2, reduction='mean'):
+    def __init__(self, data, gamma=2.0, reduction='mean'):
         super(FocalLoss, self).__init__()
-        self.alpha = alpha  # Balancing factor for class imbalance
-        self.gamma = gamma  # Focusing parameter
-        self.reduction = reduction  # 'mean', 'sum', or 'none'
+        emotion_counts = data.group_by("emotion").count()
+        total_samples = emotion_counts["count"].sum()
+        emotion_frequencies = emotion_counts.with_columns(
+            (pl.col("count") / total_samples).alias("frequency")
+        )
+        emotion_alphas = emotion_frequencies.with_columns(
+            (1 - pl.col("frequency")).alias("alpha")
+        )
+
+        self.alpha_dict = emotion_alphas["alpha"]
+        print(self.alpha_dict)
+        self.gamma = gamma
+        self.reduction = reduction
 
     def forward(self, inputs, targets):
-        # Calculate cross-entropy loss
         ce_loss = F.cross_entropy(inputs, targets, reduction='none')
+        pt = torch.exp(-ce_loss)
+        
+        targets_list = targets.tolist()
+        alpha_values = torch.tensor([self.alpha_dict[target] for target in targets_list]).to(inputs.device)
+        
+        focal_loss = (alpha_values * (1 - pt) ** self.gamma * ce_loss)
 
-        # Get the probabilities (softmax)
-        pt = torch.exp(-ce_loss)  # pt is the probability of the true class
-        loss = self.alpha * (1 - pt) ** self.gamma * ce_loss
-
-        # Reduce the loss
         if self.reduction == 'mean':
-            return loss.mean()
+            return torch.mean(focal_loss)
         elif self.reduction == 'sum':
-            return loss.sum()
+            return torch.sum(focal_loss)
         else:
-            return loss
-
+            return focal_loss

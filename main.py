@@ -1,4 +1,3 @@
-from sklearn.utils.validation import validate_data
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
@@ -7,7 +6,6 @@ import numpy as np
 import logging
 import polars as pl
 from sklearn.model_selection import train_test_split
-
 from cross_validation import cross_validate
 
 # Set up logging to write to a file
@@ -20,14 +18,28 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed_all(42)
 
 
-def test_model(train_subset, val_subset, num_epochs=30):
+def test_model(data, num_epochs=30):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     criterion = nn.CrossEntropyLoss().to(device)
-    # criterion = FocalLoss(alpha=0.25, gamma=2).to(device)
-    
+
     model = CNN().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    # optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
+
+    emotions = data[:, 1].unique().sort().to_list()
+    emotion_to_idx = {emotion: idx for idx, emotion in enumerate(emotions)}
+
+    train_indices, test_indices = train_test_split(
+        data.select(pl.arange(0, data.height)).to_series().to_list(),
+        test_size=0.2,
+        random_state=42,
+        stratify=data["emotion"].to_list()  # Ensures equal label distribution
+    )
+
+    training_data = data[train_indices]
+    validate_data = data[test_indices]
+
+    train_subset = EmotionsDataset(training_data, emotion_to_idx, "images", train=True)
+    val_subset = EmotionsDataset(validate_data, emotion_to_idx, "images", train=False)
 
     train_loader = DataLoader(train_subset, batch_size=64, shuffle=True, num_workers=4, pin_memory=True)
     val_loader = DataLoader(val_subset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True)
@@ -89,23 +101,7 @@ if __name__ == "__main__":
     data = data.with_columns(
         data[:, 1].str.to_lowercase().alias("emotion")
     )
-    cross_validate(data, k=5, num_epochs=100)
+    # cross_validate(data, k=5, num_epochs=100)
 
-
-    # emotions = data[:, 1].unique().to_list()
-    # emotion_to_idx = {emotion: idx for idx, emotion in enumerate(emotions)}
-    #
-    # train_indices, test_indices = train_test_split(
-    #     data.select(pl.arange(0, data.height)).to_series().to_list(),
-    #     test_size=0.2,
-    #     random_state=42,
-    #     stratify=data["emotion"].to_list()  # Ensures equal label distribution
-    # )
-    # training_data = data[train_indices]
-    # validate_data = data[test_indices]
-    #
-    #
-    # train_subset = EmotionsDataset(training_data, emotion_to_idx, "images", train=True)
-    # val_subset = EmotionsDataset(validate_data, emotion_to_idx, "images", train=False)
-    # test_model(train_subset, val_subset, num_epochs=100)
+    test_model(data, num_epochs=100)
 

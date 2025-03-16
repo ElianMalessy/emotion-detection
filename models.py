@@ -18,19 +18,6 @@ class CNN(nn.Module):
         self.fc1 = nn.Linear(32 * 32 * 32, 128)
         self.fc2 = nn.Linear(128, 8)
 
-    #     self.apply(self.init_weights)
-    #
-    # def init_weights(self, m):
-    #     if isinstance(m, nn.Conv2d):
-    #         # Xavier/Glorot initialization for Conv layers
-    #         nn.init.xavier_normal_(m.weight)
-    #         if m.bias is not None:
-    #             nn.init.zeros_(m.bias)
-    #     elif isinstance(m, nn.Linear):
-    #         # Kaiming/He initialization for Linear layers
-    #         nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
-    #         if m.bias is not None:
-    #             nn.init.zeros_(m.bias)
 
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))  # Shape: [64, 16, 175, 175]
