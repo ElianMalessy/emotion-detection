@@ -5,6 +5,7 @@ from models import CNN, EmotionsDataset
 import numpy as np
 import logging
 from sklearn.model_selection import StratifiedKFold
+from stopping import EarlyStopping
 
 
 def cross_validate(data, k=5, num_epochs=20):
@@ -21,7 +22,6 @@ def cross_validate(data, k=5, num_epochs=20):
 
     train_results = []
     val_results = []
-
 
     for fold, (train_indices, val_indices) in enumerate(kf.split(indices, labels)):
         logging.info(f"Fold {fold + 1}/{k}")
@@ -42,6 +42,8 @@ def cross_validate(data, k=5, num_epochs=20):
 
         val_loss = 0
         val_accuracy = 0
+
+        early_stopping = EarlyStopping(patience=8, delta=0.001)
 
         for epoch in range(num_epochs):
             print(f"  Epoch {epoch + 1}/{num_epochs}")
@@ -91,6 +93,11 @@ def cross_validate(data, k=5, num_epochs=20):
 
             logging.info(f"Epoch {epoch + 1}: Training Loss: {train_loss:.4f}, Training Accuracy: {train_accuracy:.4f}")
             logging.info(f"Epoch {epoch + 1}: Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.4f}")
+
+            early_stopping(val_accuracy, epoch)
+            if early_stopping.stop_training:
+                print(f"Early stopping at epoch {epoch + 1}")
+                break
 
         val_results.append((val_loss, val_accuracy))
 

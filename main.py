@@ -46,7 +46,7 @@ def test_model(data, num_epochs=100):
     train_loader = DataLoader(train_subset, batch_size=64, shuffle=True, num_workers=4, pin_memory=True, persistent_workers=True)
     val_loader = DataLoader(val_subset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True, persistent_workers=True)
 
-    early_stopping = EarlyStopping(patience=5, delta=0.001)
+    early_stopping = EarlyStopping(patience=8, delta=0.001)
 
     results = {}
 
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     data = data.with_columns(
         data[:, 1].str.to_lowercase().alias("emotion")
     )
-    model, val_accuracy = test_model(data, num_epochs=100)
-    print(f"Training complete! validation accuracy: {val_accuracy:.4f}")
-    # cross_validate(data, k=5, num_epochs=100)
+    # model, val_accuracy = test_model(data, num_epochs=100)
+    # print(f"Training complete! validation accuracy: {val_accuracy:.4f}")
+    cross_validate(data, k=5, num_epochs=100)
 
