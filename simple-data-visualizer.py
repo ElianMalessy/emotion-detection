@@ -62,7 +62,7 @@ def analyze_emotion_dataset(csv_path, img_dir, model_path=None, output_dir="emot
     
     # 1. Analyze and visualize class distribution
     print("\n1. Analyzing class distribution...")
-    emotion_counts = data.group_by(emotion_col).agg(pl.count().alias("count"))
+    emotion_counts = data.group_by(emotion_col).agg(pl.len().alias("count"))
     total = emotion_counts["count"].sum()
     emotion_counts = emotion_counts.with_columns(
         (pl.col("count") / total * 100).alias("percentage")
@@ -253,7 +253,7 @@ def analyze_emotion_dataset(csv_path, img_dir, model_path=None, output_dir="emot
             unique_users = user_data[user_id_col].n_unique()
             
             # Count emotions per user
-            user_emotion_counts = user_data.group_by([user_id_col, user_emotion_col]).agg(pl.count().alias("count"))
+            user_emotion_counts = user_data.group_by([user_id_col, user_emotion_col]).agg(pl.len().alias("count"))
             
             # Get emotion diversity per user
             user_diversity = user_emotion_counts.group_by(user_id_col).agg(
@@ -328,20 +328,38 @@ def analyze_emotion_dataset(csv_path, img_dir, model_path=None, output_dir="emot
                     all_preds.extend(preds.cpu().numpy())
                     all_labels.extend(labels.numpy())
             
-            # Create confusion matrix
+            # Create confusion matrix (raw counts)
             cm = np.zeros((len(emotions), len(emotions)), dtype=int)
             for true_label, pred_label in zip(all_labels, all_preds):
                 cm[true_label, pred_label] += 1
             
-            # Plot confusion matrix
+            # Create normalized confusion matrix (row-wise percentages)
+            # Each row will sum to 100%, showing how predictions are distributed for each true class
+            cm_percentage = np.zeros((len(emotions), len(emotions)))
+            for i in range(len(emotions)):
+                if np.sum(cm[i, :]) > 0:  # Avoid division by zero
+                    cm_percentage[i, :] = cm[i, :] / np.sum(cm[i, :]) * 100
+            
+            # Plot raw count confusion matrix
             plt.figure(figsize=(12, 10))
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
                         xticklabels=emotions, yticklabels=emotions)
             plt.xlabel('Predicted')
             plt.ylabel('True')
-            plt.title('Confusion Matrix')
+            plt.title('Confusion Matrix (Raw Counts)')
             plt.tight_layout()
-            plt.savefig(os.path.join(output_dir, "confusion_matrix.png"))
+            plt.savefig(os.path.join(output_dir, "confusion_matrix_raw.png"))
+            plt.close()
+            
+            # Plot percentage confusion matrix
+            plt.figure(figsize=(12, 10))
+            sns.heatmap(cm_percentage, annot=True, fmt='.1f', cmap='Blues', 
+                        xticklabels=emotions, yticklabels=emotions, vmin=0, vmax=100)
+            plt.xlabel('Predicted')
+            plt.ylabel('True')
+            plt.title('Confusion Matrix (Percentages by Row)')
+            plt.tight_layout()
+            plt.savefig(os.path.join(output_dir, "confusion_matrix_percentage.png"))
             plt.close()
             
             # Calculate accuracy per class
@@ -441,8 +459,12 @@ def analyze_emotion_dataset(csv_path, img_dir, model_path=None, output_dir="emot
         {f'''
         <h2>6. Model Performance</h2>
         <div class="image-container">
-            <img src="confusion_matrix.png" alt="Confusion Matrix">
-            <div class="caption">Confusion matrix showing the model's predictions versus true labels</div>
+            <img src="confusion_matrix_raw.png" alt="Confusion Matrix (Raw)">
+            <div class="caption">Confusion matrix showing raw counts of predictions</div>
+        </div>
+        <div class="image-container">
+            <img src="confusion_matrix_percentage.png" alt="Confusion Matrix (Percentage)">
+            <div class="caption">Confusion matrix showing percentages by row (rows sum to 100%)</div>
         </div>
         <div class="image-container">
             <img src="class_accuracy.png" alt="Class Accuracy">
