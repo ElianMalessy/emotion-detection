@@ -111,7 +111,7 @@ def test_model(data, num_epochs=100):
     with open("data.json", "w") as f:
         json.dump(results, f)
 
-    return model, best_val_accuracy
+    return model, val_accuracy
 
 
 if __name__ == "__main__":
@@ -119,7 +119,7 @@ if __name__ == "__main__":
     data = data.with_columns(
         data[:, 1].str.to_lowercase().alias("emotion")
     )
-    model, best_accuracy = test_model(data, num_epochs=100)
-    print(f"Training complete! Best validation accuracy: {best_accuracy:.4f}")
+    model, val_accuracy = test_model(data, num_epochs=100)
+    print(f"Training complete! validation accuracy: {val_accuracy:.4f}")
     # cross_validate(data, k=5, num_epochs=100)
 
