@@ -6,9 +6,9 @@ import numpy as np
 import logging
 import polars as pl
 from sklearn.model_selection import train_test_split
-from cross_validation import cross_validate
-from loss import FocalLoss
 from stopping import EarlyStopping
+from cross_validation import cross_validate
+# from loss import FocalLoss
 
 # Set up logging to write to a file
 logging.basicConfig(filename='training_log.txt', level=logging.INFO, 
@@ -20,10 +20,9 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed_all(42)
 
 
-def test_model(data, num_epochs=30):
+def test_model(data, num_epochs=100):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     criterion = nn.CrossEntropyLoss().to(device)
-    # criterion = FocalLoss(data, gamma=1).to(device)
 
     model = CNN().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
@@ -50,8 +49,9 @@ def test_model(data, num_epochs=30):
     early_stopping = EarlyStopping(patience=5, delta=0.001)
 
     results = {}
-    best_val_accuracy = 0.0  # Track the best validation accuracy
 
+    train_accuracy = 0
+    val_accuracy = 0
     for epoch in range(num_epochs):
         train_accuracy = 0
         val_accuracy = 0
@@ -94,22 +94,17 @@ def test_model(data, num_epochs=30):
         print(f"Epoch {epoch + 1}: Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
         logging.info(f"Epoch {epoch + 1}: Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
 
-        # Save the model if it's the best so far
-        if val_accuracy > best_val_accuracy:
-            best_val_accuracy = val_accuracy
-            torch.save(model.state_dict(), "emotion_model.pth")
-            print(f"Saved new best model with validation accuracy: {val_accuracy:.4f}")
-            logging.info(f"Saved new best model with validation accuracy: {val_accuracy:.4f}")
+
+        early_stopping(val_accuracy, epoch)
+        if early_stopping.stop_training:
+            print(f"Early stopping at epoch {epoch + 1}")
+            break
 
     # Save the final model regardless of performance
     torch.save(model.state_dict(), "emotion_model_final.pth")
     print(f"Saved final model with validation accuracy: {val_accuracy:.4f}")
     logging.info(f"Saved final model with validation accuracy: {val_accuracy:.4f}")
 
-    early_stopping(val_accuracy, epoch)
-    if early_stopping.stop_training:
-        print(f"Early stopping at epoch {epoch + 1}")
-        break
 
 
     import json
