@@ -8,6 +8,7 @@ import polars as pl
 from sklearn.model_selection import train_test_split
 from cross_validation import cross_validate
 from loss import FocalLoss
+from stopping import EarlyStopping
 
 # Set up logging to write to a file
 logging.basicConfig(filename='training_log.txt', level=logging.INFO, 
@@ -25,7 +26,7 @@ def test_model(data, num_epochs=30):
     # criterion = FocalLoss(data, gamma=1).to(device)
 
     model = CNN().to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
 
     emotions = data[:, 1].unique().sort().to_list()
     emotion_to_idx = {emotion: idx for idx, emotion in enumerate(emotions)}
@@ -44,7 +45,9 @@ def test_model(data, num_epochs=30):
     val_subset = EmotionsDataset(validate_data, emotion_to_idx, "images", train=False)
 
     train_loader = DataLoader(train_subset, batch_size=64, shuffle=True, num_workers=4, pin_memory=True, persistent_workers=True)
-    val_loader = DataLoader(val_subset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True)
+    val_loader = DataLoader(val_subset, batch_size=64, shuffle=False, num_workers=4, pin_memory=True, persistent_workers=True)
+
+    early_stopping = EarlyStopping(patience=5, delta=0.001)
 
     results = {}
     best_val_accuracy = 0.0  # Track the best validation accuracy
@@ -91,6 +94,7 @@ def test_model(data, num_epochs=30):
         print(f"Epoch {epoch + 1}: Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
         logging.info(f"Epoch {epoch + 1}: Training Accuracy: {train_accuracy:.4f}, Validation Accuracy: {val_accuracy:.4f}")
 
+<<<<<<< HEAD
         # Save the model if it's the best so far
         if val_accuracy > best_val_accuracy:
             best_val_accuracy = val_accuracy
@@ -102,6 +106,14 @@ def test_model(data, num_epochs=30):
     torch.save(model.state_dict(), "emotion_model_final.pth")
     print(f"Saved final model with validation accuracy: {val_accuracy:.4f}")
     logging.info(f"Saved final model with validation accuracy: {val_accuracy:.4f}")
+||||||| parent of 0778884 (early stopping)
+=======
+        early_stopping(val_accuracy, epoch)
+        if early_stopping.stop_training:
+            print(f"Early stopping at epoch {epoch + 1}")
+            break
+
+>>>>>>> 0778884 (early stopping)
 
     import json
     with open("data.json", "w") as f:
@@ -115,6 +127,18 @@ if __name__ == "__main__":
     data = data.with_columns(
         data[:, 1].str.to_lowercase().alias("emotion")
     )
+<<<<<<< HEAD
     model, best_accuracy = test_model(data, num_epochs=30)
     print(f"Training complete! Best validation accuracy: {best_accuracy:.4f}")
     # cross_validate(data, k=5, num_epochs=100)
+||||||| parent of 0778884 (early stopping)
+    test_model(data, num_epochs=30)
+    # cross_validate(data, k=5, num_epochs=100)
+
+
+=======
+    test_model(data, num_epochs=100)
+    # cross_validate(data, k=5, num_epochs=100)
+
+
+>>>>>>> 0778884 (early stopping)

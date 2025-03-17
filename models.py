@@ -62,15 +62,15 @@ class EmotionsDataset(Dataset):
 
         augmentation_transforms = [
             RandomHorizontalFlip(p=0.5),  # Flip images with 50% probability
-            RandomRotation(degrees=10),  # Rotate images by ±10 degrees
+            RandomRotation(degrees=10),  # Rotate images by ±20 degrees
             RandomResizedCrop(128, scale=(0.8, 1.0)),  # Random crop and resize
             Grayscale(num_output_channels=1), # Most images are already grayscale
             Normalize(mean=[0.4736], std=[0.2079]), # mean and std of the dataset
         ]
 
         if train:
-            # self.transform = Compose(augmentation_transforms)
-            self.transform = Compose(base_transform)
+            self.transform = Compose(augmentation_transforms)
+            # self.transform = Compose(base_transform)
         else:
             self.transform = Compose(base_transform)
 
